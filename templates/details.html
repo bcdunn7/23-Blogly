@@ -1,0 +1,16 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    User Details
+{% endblock %}
+
+{% block content %}
+
+<img src="{{user.image_url}}" alt="#">
+
+<h2>{{user.first_name}} {{user.last_name}}</h2>
+
+<button id="edit-user-btn">Edit</button>
+<button id="delete-user-btn">Delete</button>
+
+{% endblock %}

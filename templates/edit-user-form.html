@@ -1,0 +1,19 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    Edit User
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit User:</h1>
+
+<form id="edit-user-form" action="/users/{{user.id}}/edit" method="POST">
+    <p>First Name: <input name="First" type="text" placeholder="{{user.first_name}}"></p>
+    <p>Last Name: <input name="Last" type="text" placeholder="{{user.last_name}}"></p>
+    <p>Image URL: <input name="image" type="url" placeholder="{{user.image_url}}"></p>
+    <button id="cancel-btn"><a href="/users/{{user.id}}">Cancel</a></button>
+    <button id="save-changes-btn">Save</button>
+</form>
+
+{% endblock %}

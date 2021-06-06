@@ -1,0 +1,18 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    New User
+{% endblock %}
+
+{% block content %}
+
+<h1>New User:</h1>
+
+<form id="add-new-user-form" action="/users/new" method="POST">
+    <p>First Name: <input name="first" type="text" placeholder="Enter first name"></p>
+    <p>Last Name: <input name="last" type="text" placeholder="Enter last name"></p>
+    <p>Image URL: <input name="image" type="url" placeholder="Enter image URL"></p>
+    <button id="submit-new-user-btn">Add User!</button>
+</form>
+
+{% endblock %}
