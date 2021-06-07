@@ -1,0 +1,19 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    Edit Post
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit Post</h1>
+
+<form id="edit-post-form" action="/posts/{{post.id}}/edit" method="POST">
+    <p>Title: <input name="title" type="text" value="{{post.title}}"></p>
+    <p>Content: <input name="content" type="text" value="{{post.content}}"></p>
+    
+    <a id="cancel-edit-post-btn" href="/posts/{{post.id}}">Cancel</a>
+    <Button type="submit" id="submit-new-post-btn">Edit</Button>
+</form>
+    
+{% endblock %}

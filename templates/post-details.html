@@ -1,0 +1,21 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    Post Details
+{% endblock %}
+
+{% block content %}
+
+<h1>{{post.title}}</h1>
+
+<p>{{post.content}}</p>
+
+<p><i>By: {{post.user.first_name}} {{post.user.last_name}}</i></p>
+
+<a id="cancel-post-details-btn" href="/users/{{post.user_id}}">Cancel</a>
+<form>
+    <button formaction="/posts/{{post.id}}/edit" formmethod="GET" id="edit-post-details-btn">Edit</button>
+    <button formaction="/posts/{{post.id}}/delete" formmethod="POST" id="delete-post-details-btn">Delete</button>
+</form>
+
+{% endblock %}
