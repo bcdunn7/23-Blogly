@@ -1,0 +1,222 @@
+(venv) bryce@DESKTOP-GEFNJ8U:~/Springboard/23_SQLAlchemy/flask-blogly$ python -m unittest test_flask_app.py
+
+2021-06-08 22:27:53,817 INFO sqlalchemy.engine.Engine select version()
+2021-06-08 22:27:53,817 INFO sqlalchemy.engine.Engine [raw sql] {}
+2021-06-08 22:27:53,818 INFO sqlalchemy.engine.Engine select current_schema()
+2021-06-08 22:27:53,819 INFO sqlalchemy.engine.Engine [raw sql] {}
+2021-06-08 22:27:53,820 INFO sqlalchemy.engine.Engine show standard_conforming_strings
+2021-06-08 22:27:53,820 INFO sqlalchemy.engine.Engine [raw sql] {}
+2021-06-08 22:27:53,821 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-06-08 22:27:53,821 INFO sqlalchemy.engine.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2021-06-08 22:27:53,821 INFO sqlalchemy.engine.Engine [generated in 0.00027s] {'name': 'users'}
+2021-06-08 22:27:53,823 INFO sqlalchemy.engine.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2021-06-08 22:27:53,823 INFO sqlalchemy.engine.Engine [cached since 0.001826s ago] {'name': 'posts'}
+2021-06-08 22:27:53,824 INFO sqlalchemy.engine.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2021-06-08 22:27:53,824 INFO sqlalchemy.engine.Engine [cached since 0.003133s ago] {'name': 'tags'}
+2021-06-08 22:27:53,826 INFO sqlalchemy.engine.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2021-06-08 22:27:53,826 INFO sqlalchemy.engine.Engine [cached since 0.004477s ago] {'name': 'posttags'}
+2021-06-08 22:27:53,827 INFO sqlalchemy.engine.Engine COMMIT
+.EEEEEEE
+======================================================================
+ERROR: test_add_user (test_flask_app.UserViewsTestCase)
+Test if submiting new user form works.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1750, in _execute_context
+    self.dialect.do_executemany(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 910, in do_executemany
+    context._psycopg2_fetched_rows = xtras.execute_values(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/psycopg2/extras.py", line 1292, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 58, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3286, in flush
+    self._flush(objects)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3426, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3386, in _flush
+    flush_context.execute()
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 242, in save_obj
+    _emit_insert_statements(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1153, in _emit_insert_statements
+    c = connection._execute_20(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 324, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1451, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1813, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1994, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1750, in _execute_context
+    self.dialect.do_executemany(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 910, in do_executemany
+    context._psycopg2_fetched_rows = xtras.execute_values(
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/psycopg2/extras.py", line 1292, in execute_values
+    cur.execute(b''.join(parts))
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj)
+
+======================================================================
+ERROR: test_listing_all_users (test_flask_app.UserViewsTestCase)
+Test if homepage displays list of users.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+======================================================================
+ERROR: test_listing_posts_for_user (test_flask_app.UserViewsTestCase)
+Test if posts are shown on a user page.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+======================================================================
+ERROR: test_show_add_post_form (test_flask_app.UserViewsTestCase)
+Test if route shows new post form.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+======================================================================
+ERROR: test_show_add_user_form (test_flask_app.UserViewsTestCase)
+Test if form routing shows form.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+======================================================================
+ERROR: test_show_post_edit_form (test_flask_app.UserViewsTestCase)
+Test if post edit form is correctly displayed.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+======================================================================
+ERROR: test_show_user_edit_page (test_flask_app.UserViewsTestCase)
+Test if user edit form is show.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/test_flask_app.py", line 34, in setUp
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/home/bryce/Springboard/23_SQLAlchemy/flask-blogly/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "tags_name_key"
+DETAIL:  Key (name)=(funny) already exists.
+
+[SQL: INSERT INTO tags (name) VALUES (%(name)s) RETURNING tags.id]
+[parameters: ({'name': 'funny'}, {'name': 'great'})]
+(Background on this error at: http://sqlalche.me/e/14/gkpj) (Background on this error at: http://sqlalche.me/e/14/7s2a)
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.102s
+
+FAILED (errors=7)
+
+
+(venv) bryce@DESKTOP-GEFNJ8U:~/Springboard/23_SQLAlchemy/flask-blogly$

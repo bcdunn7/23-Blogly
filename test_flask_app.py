@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app import app
-from models import db, User, Post
+from models import db, User, Post, Tag, PostTag
 
 # test database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_testing'
@@ -16,11 +16,11 @@ db.drop_all()
 db.create_all()
 
 
-class UserViewsTestCase(TestCase):
-    """Testing the views for User."""
+class ApplicationTestCase(TestCase):
+    """Testing the views for the application."""
 
     def setUp(self):
-        """Adding two sample users and three sample posts."""
+        """Adding two sample users, three sample posts, two sample tage, and 1 posttag."""
 
         user1 = User(first_name="John",
                     last_name="Smith",
@@ -32,7 +32,6 @@ class UserViewsTestCase(TestCase):
         db.session.add(user1)
         db.session.add(user2)
         db.session.commit()
-
 
         post1 = Post(title="Sample Title1",
                     content="Content1",
@@ -51,9 +50,22 @@ class UserViewsTestCase(TestCase):
         db.session.add(post3)
         db.session.commit()
 
+        tag1 = Tag(name="funny")
+        tag2 = Tag(name="great")
+
+        db.session.add(tag1)
+        db.session.add(tag2)
+        db.session.commit()
+
+        # posttag1 = PostTag(post_id=1,tag_id=1)
+
+        # db.session.add(posttag1)
+        # db.session.commit()
+
         self.user1_id = user1.id
         self.user2_id = user2.id
         self.post1_id = post1.id
+        self.tag1_id = tag1.id
 
     def teatDown(self):
         """Clean db of failed transactions."""

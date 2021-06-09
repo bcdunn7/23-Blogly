@@ -11,6 +11,14 @@
 <form method="POST">
     <p>Title: <input name="title" type="text"></p>
     <p>Content: <input name="content" type="text"></p>
+
+    {% if tags %}
+        {% for tag in tags %}
+            <p><input name="tag" value="{{tag.id}}" type="checkbox"> {{tag.name}}</p>
+        {% endfor %}
+    {% else %}
+        <p>No tags.</p>
+    {% endif%}
     
     <a href="/users/{{user.id}}" id="cancel-new-post-btn">Cancel</a>
     <Button type="submit" id="submit-new-post-btn">Add</Button>

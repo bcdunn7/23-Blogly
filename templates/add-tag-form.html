@@ -1,0 +1,18 @@
+{% extends 'listing.html' %}
+
+{% block title %}
+    Add Tag
+{% endblock %}
+
+{% block content %}
+
+<h1>Add Tag:</h1>
+
+<form method="POST">
+    <p>Name: <input name="name" type="text"></p>
+    
+    <a href="/tags" id="cancel-new-tag-btn">Cancel</a>
+    <Button type="submit" id="submit-new-tag-btn">Add</Button>
+</form>
+
+{% endblock %}
