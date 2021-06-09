@@ -12,15 +12,15 @@ app.config['TESTING'] = True
 # don't use Flask DebugToolbar
 app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 
-db.drop_all()
-db.create_all()
-
 
 class ApplicationTestCase(TestCase):
     """Testing the views for the application."""
 
     def setUp(self):
         """Adding two sample users, three sample posts, two sample tage, and 1 posttag."""
+
+        db.drop_all()
+        db.create_all()
 
         user1 = User(first_name="John",
                     last_name="Smith",
